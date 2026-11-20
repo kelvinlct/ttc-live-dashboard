@@ -133,6 +133,12 @@ body {
   font-family: inherit;
 }
 
+@media (prefers-color-scheme: dark) {
+  .leaflet-tile-pane {
+    filter: invert(0.92) hue-rotate(180deg) saturate(0.4) brightness(0.95);
+  }
+}
+
 .vehicle-icon {
   background: transparent;
   border: none;

@@ -1,22 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { CircleMarker, MapContainer, Marker, Polyline, Popup, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import type { RouteConfig, Vehicle } from "@/lib/nextbus/types";
 
 type Point = [number, number];
-
-function subscribeToColorScheme(onChange: () => void) {
-  const media = window.matchMedia("(prefers-color-scheme: dark)");
-  media.addEventListener("change", onChange);
-  return () => media.removeEventListener("change", onChange);
-}
-
-function colorSchemeIsDark() {
-  return window.matchMedia("(prefers-color-scheme: dark)").matches;
-}
 
 function Fit({ positions }: { positions: Point[] }) {
   const map = useMap();
@@ -45,8 +35,6 @@ export default function RouteMap({
   route: RouteConfig;
   vehicles: Vehicle[];
 }) {
-  const dark = useSyncExternalStore(subscribeToColorScheme, colorSchemeIsDark, () => false);
-
   const color = route.color ?? "#e10600";
   const positions = useMemo<Point[]>(() => {
     if (
@@ -68,12 +56,9 @@ export default function RouteMap({
   return (
     <MapContainer center={center} zoom={13} scrollWheelZoom className="h-full w-full">
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        url={
-          dark
-            ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-        }
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        subdomains="abc"
       />
       <Fit positions={positions} />
       {route.paths.map((path, index) => (
