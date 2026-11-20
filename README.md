@@ -2,7 +2,7 @@
 
 Real-time arrivals for Toronto buses and streetcars. Search a route, pick the stop you actually wait at, and keep a board of favourites that refreshes itself.
 
-**Live demo:** [https://ttc-live-dashboard.vercel.app](https://ttc-live-dashboard.vercel.app) *(placeholder — import this repo on Vercel and replace the link with your deployment)*
+**Live demo:** [https://ttc-live-dashboard.vercel.app](https://ttc-live-dashboard.vercel.app) 
 
 ![Favourite stops showing the next vehicles in minutes](screenshots/board.png)
 
