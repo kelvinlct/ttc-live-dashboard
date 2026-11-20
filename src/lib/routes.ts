@@ -29,6 +29,21 @@ export function classifyRoute(shortName: string): RouteMode {
   return "bus";
 }
 
+export function modeAccent(mode: RouteMode): string {
+  switch (mode) {
+    case "streetcar":
+      return "#e10600";
+    case "express":
+      return "#6d28d9";
+    case "night":
+      return "#4338ca";
+    case "community":
+      return "#0f766e";
+    default:
+      return "#1d4e89";
+  }
+}
+
 export function modeLabel(mode: RouteMode): string {
   switch (mode) {
     case "streetcar":
