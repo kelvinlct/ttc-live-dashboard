@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f3efe6;
+  --card: #fffdf8;
+  --ink: #1c1714;
+  --muted: #6d655c;
+  --line: #e4d9c8;
+  --ttc: #e10600;
+  --ttc-deep: #b10500;
+  --soon: #0f766e;
+  --due: #b45309;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #12110f;
+    --card: #1d1a17;
+    --ink: #f6f1e8;
+    --muted: #b7aea3;
+    --line: #3a342c;
+    --ttc: #ff4b40;
+    --ttc-deep: #ff6d64;
+    --soon: #5eead4;
+    --due: #fbbf24;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-barlow);
+  --font-display: var(--font-barlow-condensed);
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-ttc: var(--ttc);
+  --color-ttc-deep: var(--ttc-deep);
+  --color-soon: var(--soon);
+  --color-due: var(--due);
+}
+
+body {
+  background:
+    radial-gradient(900px 420px at 0% -10%, color-mix(in oklab, var(--ttc) 16%, transparent), transparent 55%),
+    var(--paper);
+  color: var(--ink);
+  font-family: var(--font-barlow), "Barlow", "Segoe UI", sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", "Arial Narrow", sans-serif;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 50;
+  transform: translateY(-150%);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.5rem 0.9rem;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-weight: 600;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+}
+
+.btn-ttc {
+  background: var(--ttc);
+  color: white;
+}
+
+.btn-quiet {
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.btn[aria-pressed="true"] {
+  background: var(--ttc);
+  color: white;
+}
+
+.field {
+  width: 100%;
+  min-height: 3rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  padding: 0.65rem 0.9rem;
+}
+
+.field::placeholder {
+  color: var(--muted);
+}
+
+.card {
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 1.25rem;
+  box-shadow: 0 12px 40px rgba(40, 24, 8, 0.05);
+}
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 1.25rem;
+  background: var(--paper);
+  font-family: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+  .leaflet-tile-pane {
+    filter: invert(0.92) hue-rotate(180deg) saturate(0.4) brightness(0.95);
+  }
+}
+
+.vehicle-icon {
+  background: transparent;
+  border: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
